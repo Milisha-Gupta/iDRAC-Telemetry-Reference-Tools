@@ -1,5 +1,5 @@
 # ---------- Stage 1: Build all binaries ----------
-FROM golang:1.24 AS builder
+FROM golang:1.24.11 AS builder
 
 # Define user arguments
 ARG USER_ID=1000
@@ -14,6 +14,7 @@ COPY go.mod go.sum ./
 
 # Download dependencies
 RUN go mod download
+RUN go mod tidy
 
 # Copy source code
 COPY ./cmd ./cmd
