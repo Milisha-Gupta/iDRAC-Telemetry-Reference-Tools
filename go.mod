@@ -1,6 +1,6 @@
 module github.com/dell/iDRAC-Telemetry-Reference-Tools
 
-go 1.24.11
+go 1.24.0
 
 toolchain go1.24.11
 
