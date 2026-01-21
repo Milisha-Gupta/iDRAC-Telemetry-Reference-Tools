@@ -14,11 +14,13 @@ COPY go.mod go.sum ./
 
 # Download dependencies
 RUN go mod download
-RUN go mod tidy
 
 # Copy source code
 COPY ./cmd ./cmd
 COPY ./internal ./internal
+
+# Tidy and download dependencies after source is available
+RUN go mod tidy && go mod download
 
 # Build all binaries
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /build/dbdiscauth ./cmd/dbdiscauth
